@@ -1,0 +1,26 @@
+DESCRIPTION: 
+(Murphy, Q.M. et al, Mathematical Biosciences. (2024))
+Exponential model (Equation 3) used for antibody decay in patients following mRNA SARS-CoV-2 vaccination. 
+We fit two parameters: alpha and k. 
+The only output is log10_A, log10-transformed antibody endpoint titers following vaccination.
+Monolix version 2023R1.
+
+Variables
+-log10_A is the log10-transformed antibody endpoint titers t days post vaccination, where t>=28
+- t time, where t>=28. 
+
+Parameters
+- alpha is log10 transformed antibodies at day t=28 
+- k is the antibody decay rate, where k>0 
+
+[LONGITUDINAL]
+input = {alpha,k} ; List of parameters used for fitting
+
+
+EQUATION:
+; Equation for fitting
+
+log10_A = alpha -k*(t-28)  ; Exponential Model: log10-transformed antibody endpoint titers t days post vaccination, where t>=28
+
+OUTPUT:
+output = {log10_A} ; model output that is fitted against 'OBSERVATION' in the 'Data file' tab
